@@ -1,0 +1,85 @@
+/* Variáveis */
+:root {
+    --mainColor: #1ea5ff;
+    
+  }
+/* Elementos HTML */
+body{
+    padding: 5%;
+    background: #eee
+}
+table{
+
+}
+header{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+}
+main{
+    min-height: 70vh;
+    max-width: 900px !important;
+    background-color: ivory;    
+    box-shadow: 0 0 8px rgb(0 0 0 / 10%);
+    padding: 5% !important;
+}
+main header>h2{
+    width: fit-content;
+}
+input {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+/* IDs */
+#createButton svg{
+    width: 40px;
+}
+
+/* Classes */
+svg.btn{
+    background: none;
+    padding: 0;
+    width: 50px;
+    border: none;
+    margin-left: 20px;
+    transition-property: all;
+    transition-duration: 0.1s;
+}
+
+svg.btn:hover {
+    background: none;
+    border: none;
+    transform: scale(1.1);
+    filter: brightness(90%);
+    transition-property: all;
+    transition-duration: 0.1s;
+
+}
+
+svg.btn-primary {
+    color: var(--mainColor);
+}
+svg.btn-primary:hover {
+    color: var(--mainColor);
+}
+svg.btn-success {
+    color: #198754;
+}
+svg.btn-success:hover {
+    color: #198754;
+}
+svg.btn-danger {
+    color: #dc3545;
+}
+svg.btn-danger:hover {
+    color: #dc3545;
+}
+
+
+/* Teste */
+
+
