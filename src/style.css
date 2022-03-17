@@ -1,15 +1,16 @@
-/* Variáveis */
+/*//////////////////////*/
+/*      Variáveis       */
+/*//////////////////////*/
 :root {
     --mainColor: #1ea5ff;
     
   }
-/* Elementos HTML */
+/*//////////////////////////*/
+/*      Elementos HTML      */
+/*//////////////////////////*/
 body{
     padding: 5%;
     background: #eee
-}
-table{
-
 }
 header{
     display: flex;
@@ -28,22 +29,30 @@ main{
 main header>h2{
     width: fit-content;
 }
-input, textarea {
+
+
+/*//////////////////*/
+/*      Tabela      */
+/*//////////////////*/
+table input {
     background: none;
     border: none;
     outline: none;
     width: 100%;
 }
-textarea{
-    height: 100px;
+/* Notas */
+tbody tr:not(#form){
+
 }
 
-/* IDs */
+/*//////////////////*/
+/*      Botões      */
+/*//////////////////*/
+
 #createButton svg{
     width: 40px;
 }
 
-/* Classes */
 svg.btn{
     background: none;
     padding: 0;
@@ -78,7 +87,5 @@ svg.btn-success:hover {
 }
 
 
-
-/* Teste */
 
 

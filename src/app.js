@@ -25,6 +25,7 @@ let formHTML = document.getElementById("form")
 let tituloIinputHTML = document.getElementById("titulo");
 let conteudoIinputHTML = document.getElementById("conteudo");
 let tbody = document.querySelector('tbody');
+let notasHTML = document.querySelectorAll('tbody tr:not(#form)');
 
 ///////////////////////////////////////
 //              Funções              //
@@ -71,6 +72,10 @@ function repopularTabela() {
                     let texto = document.createTextNode(propriedade);
                     coluna.appendChild(texto);
                     linha.appendChild(coluna);
+
+                    if (key == 'conteudo') {
+                        coluna.hidden = true;
+                    }
                 }
             }
         }
