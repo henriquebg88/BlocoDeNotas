@@ -22,16 +22,20 @@ main{
     max-width: 900px !important;
     background-color: ivory;    
     box-shadow: 0 0 8px rgb(0 0 0 / 10%);
+    border-radius: 6px;
     padding: 5% !important;
 }
 main header>h2{
     width: fit-content;
 }
-input {
+input, textarea {
     background: none;
     border: none;
     outline: none;
     width: 100%;
+}
+textarea{
+    height: 100px;
 }
 
 /* IDs */
@@ -72,12 +76,7 @@ svg.btn-success {
 svg.btn-success:hover {
     color: #198754;
 }
-svg.btn-danger {
-    color: #dc3545;
-}
-svg.btn-danger:hover {
-    color: #dc3545;
-}
+
 
 
 /* Teste */
