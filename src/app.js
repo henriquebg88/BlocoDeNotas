@@ -10,7 +10,7 @@ const PATH_ICON_DELETE = '<path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.
 ////////////////////////////////////////
 let isFormEnabled = false;
 let notas = [];
-
+let globalId = 1;
 
 //////////////////////////////////////////////
 //              Query Selectors             //
@@ -20,8 +20,9 @@ let notas = [];
 let createButtonHTML = document.getElementById("createButton");
 let confirmButtonHTML = document.getElementById("confirmButton");
 
-//  Tabela
+//  Lista
 let formHTML = document.getElementById("form")
+let idInputHTML = document.getElementById("id");
 let tituloIinputHTML = document.getElementById("titulo");
 let conteudoIinputHTML = document.getElementById("conteudo");
 let recipienteNotas = document.querySelector('ul');
@@ -31,7 +32,14 @@ let recipienteNotas = document.querySelector('ul');
 ///////////////////////////////////////
 
 function alternarMenu() {
+
     isFormEnabled = !isFormEnabled;
+
+    if (!isFormEnabled) {
+        idInputHTML.value = 0;
+        tituloIinputHTML.value = "";
+        conteudoIinputHTML.value = "";
+    }
 
     confirmButtonHTML.toggleAttribute("hidden");
     formHTML.toggleAttribute("hidden");
@@ -51,24 +59,34 @@ function limparLista() {
     }
 }
 
-//  CREATE
-function criarNota(titulo, conteudo) {
-    let id = 0;
+//  CREATE e UPDATE
+function salvarNota(id, titulo, conteudo) {
 
-    notas.forEach(nota => {
-        id = nota.id == id ? ++id : id;
-    });
+    if (id == 0) {
 
-    let notaObj = {
-        id: id,
-        titulo: titulo,
-        conteudo: conteudo,
+        //CREATE
+        id = globalId++;
+
+        let notaObj = {
+            id: id,
+            titulo: titulo,
+            conteudo: conteudo,
+        }
+
+        notas.push(notaObj);
+    } else {
+
+        //UPDATE
+        notas.forEach(nota => {
+            if (nota.id == id) {
+                nota.titulo = titulo;
+                nota.conteudo = conteudo;
+            }
+        })
     }
 
-    tituloIinputHTML.value = "";
-    conteudoIinputHTML.value = "";
 
-    notas.push(notaObj);
+
     repopularTabela();
     alternarMenu();
 }
@@ -101,8 +119,14 @@ function deletarNota(e) {
 
 // UPDATE
 function updateNota(e) {
-    console.log('update');
-    console.log(e.currentTarget);
+    var id = e.currentTarget.closest('.note-body').id
+    var nota = notas.find(n => n.id == id);
+
+    idInputHTML.value = nota.id;
+    tituloIinputHTML.value = nota.titulo;
+    conteudoIinputHTML.value = nota.conteudo;
+
+    alternarMenu();
 }
 
 function exibirNota(nota) {
@@ -187,10 +211,11 @@ createButtonHTML.addEventListener('click', () => {
 //Botão confirmar
 confirmButtonHTML.addEventListener('click', () => {
 
+    let id = idInputHTML.value;
     let titulo = tituloIinputHTML.value;
     let conteudo = conteudoIinputHTML.value;
 
-    criarNota(titulo, conteudo);
+    salvarNota(id, titulo, conteudo);
 
 })
 
@@ -200,15 +225,8 @@ confirmButtonHTML.addEventListener('click', () => {
 //              Inicialização              //
 /////////////////////////////////////////////
 
-notas.push({
-    id: 0,
-    titulo: 'Exemplo',
-    conteudo: 'Descrição  curta na nota.'
-});
-notas.push({
-    id: 1,
-    titulo: 'Outro exemplo maior',
-    conteudo: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-});
+salvarNota(0, 'Exemplo', 'Descrição  curta na nota.')
+salvarNota(0, 'Outro exemplo maior', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+
 
 repopularTabela();
