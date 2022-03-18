@@ -333,7 +333,7 @@ document.addEventListener("keydown", e => {
 /////////////////////////////////////////////
 
 salvarNota(0, 'Tecla ESC', 'A tecla "ESC" fechará o formulário de edição');
-salvarNota(0, 'Tecla ENTER+', 'A tecla "ENTER" além de abrir o formulário, irá pular para o item que não estiver preenchido, e irá confirmar o salvamento, estando todos preechidos. Prático, não?');
+salvarNota(0, 'Tecla ENTER+', 'A tecla "ENTER" além de abrir o formulário, irá pular entre os items, se houver um vazio, e confirmará o salvamento se todos estiverem preenchidos. Prático, não?');
 salvarNota(0, 'Precisa de agilidade?', 'Precisa criar rapidamente várias notas? Tente a interação somente pelo teclado e veja como é prático!');
 
 repopularTabela();
