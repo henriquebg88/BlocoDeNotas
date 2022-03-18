@@ -21,7 +21,7 @@ let createButtonHTML = document.getElementById("createButton");
 let confirmButtonHTML = document.getElementById("confirmButton");
 
 //  Lista
-let formHTML = document.getElementById("form")
+let formHTML = document.querySelector("form");
 let idInputHTML = document.getElementById("id");
 let tituloIinputHTML = document.getElementById("titulo");
 let conteudoIinputHTML = document.getElementById("conteudo");
@@ -52,7 +52,7 @@ function alternarMenu() {
 }
 
 function limparLista() {
-    for (let i = recipienteNotas.children.length - 1; i > 0; i--) {
+    for (let i = recipienteNotas.children.length - 1; i >= 0; i--) {
         let tr = recipienteNotas.children[i];
 
         recipienteNotas.removeChild(tr);
@@ -193,32 +193,71 @@ function exibirNota(nota) {
         }
     }
 
-    nota_DIV.addEventListener('click', e => e.currentTarget.children[1].toggleAttribute('hidden'));
+    nota_DIV.addEventListener('click', e => abrirFecharNota(e));
 
     recipienteNotas.appendChild(nota_DIV);
+}
+
+function abrirFecharNota(e) {
+    e.currentTarget.children[1].toggleAttribute('hidden');
+    e.currentTarget.children[0].classList.toggle('nota-aberta');
+}
+
+function validarInputs() {
+
+    let validacoes = [];
+
+    if (tituloIinputHTML.value.trim() == "") {
+        mensagemErro(tituloIinputHTML, "É necessário dar um título para sua nota");
+        validacoes[0] = false;
+    } else {
+        mensagemErro(tituloIinputHTML, "");
+        validacoes[0] = true;
+    }
+
+    if (conteudoIinputHTML.value.trim() == "") {
+        mensagemErro(conteudoIinputHTML, "É necessário escrever sua nota");
+        validacoes[1] = false;
+    } else {
+        mensagemErro(conteudoIinputHTML, "");
+        validacoes[1] = true;
+    }
+    console.log(validacoes);
+
+    for (let i = 0; i < validacoes.length; i++) {
+        const validacao = validacoes[i];
+        if (!validacao) return false;
+    }
+
+    return true;
+}
+
+function mensagemErro(node, mensagem) {
+    $(node).next('error').text(mensagem);
 }
 
 //////////////////////////////////////////////
 //              EventListeners              //
 //////////////////////////////////////////////
 
-//  Botão CREATE
+//  Botão +
 createButtonHTML.addEventListener('click', () => {
     //Mostrar input e botões de confirmar
     alternarMenu();
 });
 
-//Botão confirmar
+//Botão SALVAR
 confirmButtonHTML.addEventListener('click', () => {
 
     let id = idInputHTML.value;
     let titulo = tituloIinputHTML.value;
     let conteudo = conteudoIinputHTML.value;
 
+    //Checagem para input vazio ou com whitespaces
+    if (!validarInputs()) return;
+    console.log('ue');
     salvarNota(id, titulo, conteudo);
-
 })
-
 
 
 /////////////////////////////////////////////
@@ -227,6 +266,5 @@ confirmButtonHTML.addEventListener('click', () => {
 
 salvarNota(0, 'Exemplo', 'Descrição  curta na nota.')
 salvarNota(0, 'Outro exemplo maior', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
-
 
 repopularTabela();

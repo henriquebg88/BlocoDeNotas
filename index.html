@@ -22,9 +22,8 @@
 
     <main class="container ">
 
-
-        <header class="mb-3">
-            <h2 class="">Bloco de notas</h2>
+        <header>
+            <h2 class="mb-3">Bloco de notas</h2>
 
             <svg id="createButton" xmlns="http://www.w3.org/2000/svg" class="btn btn-primary h-5 w-5"
                  viewBox="0 0 20 20"
@@ -40,31 +39,38 @@
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                       clip-rule="evenodd" />
             </svg>
-
         </header>
+        <form hidden>
+
+            <!------------------------------>
+            <!--            Form          -->
+            <!------------------------------>
+
+            <input id="id" type="hidden" value="0">
+
+            <div class="form-group mb-3">
+                <input id="titulo" class=" form-control" type="text" name="titulo" placeholder="Título">
+                <error class="text-danger"></error>
+            </div>
+
+            <div class="form-group mb-3">
+                <textarea id="conteudo" class="form-control" name="conteudo" cols="30" rows="10"
+                          placeholder="Conteúdo"></textarea>
+                <error class="text-danger"></error>
+            </div>
+        </form>
+
         <!-------------------------------->
         <!--        Lista de notas      -->
         <!-------------------------------->
-        <notas class="row">
-
+        <notas>
             <ul>
-                <div id="form" hidden>
-                    <input id="id" type="hidden" value="0">
-                    <li class="mb-3">
-                        <input id="titulo" type="text" name="" placeholder="Título">
-                    </li>
-                    <li>
-                        <textarea id="conteudo" name="" cols="30" rows="10" placeholder="Conteúdo"></textarea>
-                    </li>
-                </div>
                 <div class="note-body">
                     <!------------------------------>
                     <!-- RECIPIENTE PARA AS NOTAS -->
                     <!------------------------------>
                 </div>
             </ul>
-
-
         </notas>
 
     </main>
