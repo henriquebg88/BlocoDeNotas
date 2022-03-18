@@ -1,16 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+
             /*//////////////////////*/
             /*      Variáveis       */
             /*//////////////////////*/
 :root {
-    --mainColor: #1ea5ff;
+    --mainColor: #707CEA;
     
   }
             /*//////////////////////////*/
             /*      Elementos HTML      */
             /*//////////////////////////*/
+*{
+    font-size: .95rem;
+}
 body{
     padding: 5%;
-    background: #eee
+    background: #eee;
+    font-family: 'Roboto', sans-serif;
 }
 header{
     display: flex;
@@ -23,12 +29,19 @@ main{
     min-height: 70vh;
     max-width: 900px !important;
     background-color: ivory;    
-    box-shadow: 0 0 8px rgb(0 0 0 / 10%);
-    border-radius: 6px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     padding: 5% !important;
+
+    border-left: 40px solid var(--mainColor);
 }
 main header>h2{
     width: fit-content;
+}
+h2{
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-bottom: 0;
+    margin-right: 20px;
 }
 ul{
     padding-left: 0;
@@ -37,56 +50,9 @@ li {
     list-style: none;
 }
 
-            /*/////////////////*/
-            /*      Lista      */
-            /*/////////////////*/
-
-
-li.nota-aberta{
-    border-bottom: 1px solid;
-}
-
-ul div.note-body{
-    background-color: #edf1f3;
-    padding: 10px 20px;
-    margin: 10px 0;
-    border-radius: 5px;
-    box-shadow: 1px 1px 2px rgb(0 0 0 / 15%);
-
-    cursor: help;
-}
-ul div.note-body:hover svg {
-    width: 30px;
-}
-div.note-body li:first-child{
-    display: flex;
-    justify-content: space-between;
-    height: 30px;
-}
-div.note-body li:first-child p{
-    margin: 0;
-}
-
-div.note-body li:nth-child(2){
-    padding-left: 20px;
-    padding-top: 20px;
-}
-
-div.icons{
-    margin-left: 20px;
-}
-
-div.icons svg{
-    width: 0;
-    margin: 0;
-    opacity: .2;
-}
-div.icons svg.updateButton{
-    transition-delay: 0.05s;
-}
-div.icons svg:hover{
-    opacity: .4;
-}
+            /*////////////////////////*/
+            /*          Form          */
+            /*////////////////////////*/
 
 input, textarea {
     color: var(--mainColor);
@@ -96,13 +62,66 @@ input, textarea {
     width: 100%;
     height: 50px;
     border-bottom: 1px solid #ddd;
+    font-weight: 300;
 }
 textarea {
-    height: 100px;
+
 }
 input::placeholder, textarea::placeholder{
     color: #ccc;
 }
+
+            /*/////////////////////////*/
+            /*          Lista          */
+            /*/////////////////////////*/
+
+
+li.nota-aberta{
+}
+
+ul div.note-body{
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 2px;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+
+    cursor: help;
+}
+ul div.note-body:hover svg {
+    width: 30px;
+}
+div.note-body li:first-child{
+    font-weight: 300;
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    color: #666;
+}
+
+div.note-body li:nth-child(2){
+    font-weight: 300;
+    padding-top: 20px;
+    color: #aaa;
+}
+
+div.icons{
+    margin-left: 20px;
+}
+
+div.icons svg{
+    width: 0;
+    margin: 0;
+    opacity: .6;
+    fill: var(--mainColor);
+}
+div.icons svg:first-child{
+    transition-delay: 0.07s;
+}
+div.icons svg:hover{
+    opacity: .8;
+}
+
+
 
             /*//////////////////*/
             /*      Botões      */
@@ -115,7 +134,7 @@ input::placeholder, textarea::placeholder{
 svg.btn{
     background: none;
     padding: 0;
-    width: 50px;
+    width: 30px;
     border: none;
     margin-left: 20px;
     transition-property: all;
@@ -126,24 +145,33 @@ svg.btn:hover {
     background: none;
     border: none;
     transform: scale(1.1);
-    filter: brightness(90%);
     transition-property: all;
     transition-duration: 0.1s;
 
 }
 
+.icons svg.btn:hover{
+    filter: brightness(90%);
+}
+
 svg.btn-primary {
-    color: var(--mainColor);
+    color: white;
+    background-color: var(--mainColor);
 }
 svg.btn-primary:hover {
+    color: white;
+    background-color: var(--mainColor);
+}
+svg.btn-primary-inverted{
     color: var(--mainColor);
+    background-color: white;
 }
-svg.btn-success {
-    color: #198754;
+svg.btn-primary-inverted:hover {
+    color: var(--mainColor);
+    background-color: white;
+
 }
-svg.btn-success:hover {
-    color: #198754;
-}
+
 
 
 

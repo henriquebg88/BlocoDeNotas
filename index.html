@@ -23,20 +23,21 @@
     <main class="container ">
 
         <header>
-            <h2 class="mb-3">Bloco de notas</h2>
+            <h2>BLOCO DE NOTAS</h2>
+
 
             <svg id="createButton" xmlns="http://www.w3.org/2000/svg" class="btn btn-primary h-5 w-5"
                  viewBox="0 0 20 20"
                  fill="currentColor">
                 <path fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                      d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
                       clip-rule="evenodd" />
             </svg>
-            <svg id="confirmButton" xmlns="http://www.w3.org/2000/svg" class="btn btn-success h-5 w-5"
-                 viewBox="0 0 20 20"
-                 fill="currentColor" hidden>
+
+            <svg id="confirmButton" xmlns="http://www.w3.org/2000/svg" class="btn btn-primary h-5 w-5"
+                 viewBox="0 0 20 20" fill="currentColor" hidden>
                 <path fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                       clip-rule="evenodd" />
             </svg>
         </header>
@@ -49,12 +50,12 @@
             <input id="id" type="hidden" value="0">
 
             <div class="form-group mb-3">
-                <input id="titulo" class=" form-control" type="text" name="titulo" placeholder="Título">
+                <input id="titulo" class=" " type="text" name="titulo" placeholder="Título">
                 <error class="text-danger"></error>
             </div>
 
             <div class="form-group mb-3">
-                <textarea id="conteudo" class="form-control" name="conteudo" cols="30" rows="10"
+                <textarea id="conteudo" class="" name="conteudo" cols="30" rows="10"
                           placeholder="Conteúdo"></textarea>
                 <error class="text-danger"></error>
             </div>

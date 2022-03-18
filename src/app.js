@@ -1,8 +1,8 @@
 //////////////////////////////////////////////
 //              Elementos HTML              //
 //////////////////////////////////////////////
-const PLUS_ICON_PATH = '<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />';
-const MINUS_ICON_PATH = '<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />';
+const PLUS_ICON_PATH = '<path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />';
+const MINUS_ICON_PATH = '<path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />';
 const PATH_ICON_UPDATE = '<path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />';
 const PATH_ICON_DELETE = '<path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />';
 ////////////////////////////////////////
@@ -41,6 +41,7 @@ function alternarMenu() {
         conteudoIinputHTML.value = "";
     }
 
+    createButtonHTML.classList.toggle('btn-primary-inverted');
     confirmButtonHTML.toggleAttribute("hidden");
     formHTML.toggleAttribute("hidden");
 
@@ -155,6 +156,7 @@ function exibirNota(nota) {
                     path_update_icon.outerHTML = PATH_ICON_UPDATE;
 
                     div_icons.appendChild(svg_icon_update);
+                    svg_icon_update.classList.add('btn');
 
                     svg_icon_update.addEventListener('click', e => {
                         e.stopPropagation();
@@ -170,6 +172,7 @@ function exibirNota(nota) {
                     path_delete_icon.outerHTML = PATH_ICON_DELETE
 
                     div_icons.appendChild(svg_icon_delete);
+                    svg_icon_delete.classList.add('btn');
 
                     svg_icon_delete.addEventListener('click', e => {
                         e.stopPropagation();
