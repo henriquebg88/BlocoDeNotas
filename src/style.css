@@ -112,6 +112,7 @@ div.note-body li:nth-child(2){
 
 div.icons{
     margin-left: 20px;
+    min-width: 60px;
 }
 
 div.icons svg{
