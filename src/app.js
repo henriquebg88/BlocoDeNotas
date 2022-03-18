@@ -33,6 +33,8 @@ let recipienteNotas = document.querySelector('ul');
 
 function alternarMenu() {
 
+    if (isFormEnabled) repopularTabela();
+
     isFormEnabled = !isFormEnabled;
 
     if (!isFormEnabled) {
@@ -97,12 +99,11 @@ function repopularTabela() {
     //Remover todos os Tr, menos o primeiro  
     limparLista();
 
-    //Preencher todas as notas
-    notas.forEach(nota => {
+    for (let i = notas.length - 1; i >= 0; i--) {
+        const nota = notas[i];
+        criarNotaHTML(nota);
+    }
 
-        exibirNota(nota);
-
-    });
 }
 
 //  DELETE
@@ -127,10 +128,13 @@ function updateNota(e) {
     tituloIinputHTML.value = nota.titulo;
     conteudoIinputHTML.value = nota.conteudo;
 
-    alternarMenu();
+    removerNotaHTML(e);
+
+    if (!isFormEnabled) alternarMenu();
+
 }
 
-function exibirNota(nota) {
+function criarNotaHTML(nota) {
     let nota_DIV = document.createElement('div');
     nota_DIV.id = nota.id;
 
@@ -140,8 +144,10 @@ function exibirNota(nota) {
             if (key != 'id') {
 
                 let nota_li = document.createElement('li');
+                let nota_p = document.createElement('p');
+                nota_li.appendChild(nota_p);
                 let nota_text = document.createTextNode(propriedade);
-                nota_li.appendChild(nota_text);
+                nota_p.appendChild(nota_text);
 
                 if (key == 'titulo') {
                     let div_icons = document.createElement('div');
@@ -201,7 +207,15 @@ function exibirNota(nota) {
     recipienteNotas.appendChild(nota_DIV);
 }
 
+function removerNotaHTML(e) {
+    console.log(e.currentTarget);
+
+    recipienteNotas.removeChild(e.currentTarget.closest('.note-body'));
+}
+
 function abrirFecharNota(e) {
+
+    e.currentTarget.classList.toggle('nota-aberta');
     e.currentTarget.children[1].toggleAttribute('hidden');
     e.currentTarget.children[0].classList.toggle('nota-aberta');
 }
@@ -239,6 +253,8 @@ function mensagemErro(node, mensagem) {
     $(node).next('error').text(mensagem);
 }
 
+
+
 //////////////////////////////////////////////
 //              EventListeners              //
 //////////////////////////////////////////////
@@ -267,7 +283,7 @@ confirmButtonHTML.addEventListener('click', () => {
 //              Inicialização              //
 /////////////////////////////////////////////
 
-salvarNota(0, 'Exemplo', 'Descrição  curta na nota.')
-salvarNota(0, 'Outro exemplo maior', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+salvarNota(0, 'Lorem Ipsum', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+salvarNota(0, 'Arthur C. Clarke', '"Os limites do possível só podem ser definidos indo além do impossível."')
 
 repopularTabela();

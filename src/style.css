@@ -97,6 +97,11 @@ div.note-body li:first-child{
     height: 30px;
     color: #666;
 }
+div.note-body li p{
+    display: flex;
+    margin: 0;
+    align-items: center;
+}
 
 div.note-body li:nth-child(2){
     font-weight: 300;
@@ -121,7 +126,14 @@ div.icons svg:hover{
     opacity: .8;
 }
 
-
+/* Nota aberta */
+div.nota-aberta{
+    border-top: 4px solid var(--mainColor);
+}
+div.note-body li.nota-aberta {
+    color: var(--mainColor);
+    font-weight: 400;
+}
 
             /*//////////////////*/
             /*      Botões      */
