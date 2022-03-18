@@ -101,6 +101,7 @@ div.note-body li p{
     display: flex;
     margin: 0;
     align-items: center;
+    word-break: break-all;
 }
 
 div.note-body li:nth-child(2){
