@@ -107,7 +107,6 @@ function repopularTabela() {
         const nota = notas[i];
         criarNotaHTML(nota);
     }
-    console.log(isUpdating.status);
     if (isUpdating.status) removerNotaHTMLById(isUpdating.id);
 
 }
@@ -293,9 +292,22 @@ confirmButtonHTML.addEventListener('click', () => {
 
     //Checagem para input vazio ou com whitespaces
     if (!validarInputs()) return;
-    console.log('ue');
     salvarNota(id, titulo, conteudo);
 })
+document.addEventListener("keypress", e => {
+    if (e.key == 'Enter') {
+        confirmButtonHTML.dispatchEvent(new Event('click'));
+    }
+
+});
+document.addEventListener("submit", e => {
+    e.preventDefault();
+});
+document.addEventListener('keydown', e => {
+    if (e.key == 'Escape') {
+        if (isFormEnabled) alternarMenu();
+    }
+});
 
 
 /////////////////////////////////////////////
