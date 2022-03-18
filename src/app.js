@@ -294,19 +294,37 @@ confirmButtonHTML.addEventListener('click', () => {
     if (!validarInputs()) return;
     salvarNota(id, titulo, conteudo);
 })
-document.addEventListener("keypress", e => {
-    if (e.key == 'Enter') {
-        confirmButtonHTML.dispatchEvent(new Event('click'));
-    }
-
-});
 document.addEventListener("submit", e => {
     e.preventDefault();
 });
-document.addEventListener('keydown', e => {
-    if (e.key == 'Escape') {
-        if (isFormEnabled) alternarMenu();
+///////////////////////////////////////////////////
+//              Comandos por teclas              //
+///////////////////////////////////////////////////
+document.addEventListener("keydown", e => {
+    if (e.key == 'Enter') {
+
+        if (!isFormEnabled) {
+            alternarMenu();
+        } else {
+            if (tituloIinputHTML.value.trim() == "") {
+                tituloIinputHTML.focus();
+            } else {
+                if (conteudoIinputHTML.value.trim() == "") {
+                    conteudoIinputHTML.focus();
+                } else {
+                    confirmButtonHTML.dispatchEvent(new Event('click'));
+                }
+            }
+        }
+
+    } else {
+
+        if (e.key == 'Escape') {
+            if (isFormEnabled) alternarMenu();
+        }
+
     }
+
 });
 
 
@@ -314,8 +332,8 @@ document.addEventListener('keydown', e => {
 //              Inicialização              //
 /////////////////////////////////////////////
 
-salvarNota(0, 'Lorem Ipsum', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
-salvarNota(0, 'Arthur C. Clarke', '"Os limites do possível só podem ser definidos indo além do impossível."')
+salvarNota(0, 'Tecla ESC', 'A tecla "ESC" fechará o formulário de edição');
+salvarNota(0, 'Tecla ENTER+', 'A tecla "ENTER" além de abrir o formulário, irá pular para o item que não estiver preenchido, e irá confirmar o salvamento, estando todos preechidos. Prático, não?');
 
 repopularTabela();
 
