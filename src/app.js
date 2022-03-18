@@ -37,6 +37,9 @@ function alternarMenu() {
     if (isFormEnabled) {
         repopularTabela();
         isUpdating = false;
+    } else {
+        mensagemErro(tituloIinputHTML, "");
+        mensagemErro(conteudoIinputHTML, "");
     }
 
     isFormEnabled = !isFormEnabled;
