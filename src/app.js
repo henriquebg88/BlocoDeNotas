@@ -9,7 +9,7 @@ const PATH_ICON_DELETE = '<path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.
 //              Variáveis             //
 ////////////////////////////////////////
 let isFormEnabled = false;
-let isUpdating = false;
+let isUpdating = { status: false, id: 0 };
 let notas = [];
 let globalId = 1;
 
@@ -35,9 +35,11 @@ let recipienteNotas = document.querySelector('ul');
 function alternarMenu() {
 
     if (isFormEnabled) {
+        isUpdating.status = false;
+        isUpdating.id = 0;
         repopularTabela();
-        isUpdating = false;
     } else {
+
         mensagemErro(tituloIinputHTML, "");
         mensagemErro(conteudoIinputHTML, "");
     }
@@ -54,13 +56,8 @@ function alternarMenu() {
     confirmButtonHTML.toggleAttribute("hidden");
     formHTML.toggleAttribute("hidden");
 
-    if (formHTML.hidden == false) {
-        tituloIinputHTML.focus();
-    }
-
     createButtonHTML.children[0].outerHTML = isFormEnabled ? MINUS_ICON_PATH : PLUS_ICON_PATH;
-
-    console.log('Update? ' + isUpdating);
+    if (isFormEnabled) tituloIinputHTML.focus();
 }
 
 function limparLista() {
@@ -85,7 +82,8 @@ function salvarNota(id, titulo, conteudo) {
     } else {
 
         //UPDATE
-        isUpdating = false;
+        isUpdating.status = false;
+        isUpdating.id = 0;
         notas.forEach(nota => {
             if (nota.id == id) {
                 nota.titulo = titulo;
@@ -109,6 +107,8 @@ function repopularTabela() {
         const nota = notas[i];
         criarNotaHTML(nota);
     }
+    console.log(isUpdating.status);
+    if (isUpdating.status) removerNotaHTMLById(isUpdating.id);
 
 }
 
@@ -129,17 +129,13 @@ function deletarNota(e) {
 function updateNota(e) {
     var id = e.currentTarget.closest('.note-body').id
 
-    if (isUpdating) repopularTabela();
+    isUpdating.status = true;
+    isUpdating.id = id;
 
-    var notasHTML = document.querySelectorAll('.note-body');
+    if (isUpdating.status) repopularTabela();
 
-    notasHTML.forEach(notaHTML => {
-        if (notaHTML.id == id) {
-            removerNotaHTML(notaHTML);
-        }
-    });
+    removerNotaHTMLById(isUpdating.id);
 
-    isUpdating = true;
 
     var nota = notas.find(n => n.id == id);
 
@@ -149,7 +145,7 @@ function updateNota(e) {
 
 
     if (!isFormEnabled) alternarMenu();
-
+    tituloIinputHTML.focus();
 
 }
 
@@ -226,9 +222,15 @@ function criarNotaHTML(nota) {
     recipienteNotas.appendChild(nota_DIV);
 }
 
-function removerNotaHTML(notaHTML) {
-    console.log(notaHTML);
-    recipienteNotas.removeChild(notaHTML);
+function removerNotaHTMLById(id) {
+    var notasHTML = document.querySelectorAll('.note-body');
+
+    notasHTML.forEach(notaHTML => {
+        if (notaHTML.id == id) {
+            recipienteNotas.removeChild(notaHTML);
+        }
+    });
+
 }
 
 function abrirFecharNota(e) {
@@ -301,7 +303,6 @@ confirmButtonHTML.addEventListener('click', () => {
 /////////////////////////////////////////////
 
 salvarNota(0, 'Lorem Ipsum', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
-salvarNota(0, 'Arthur C. Clarke', '"Os limites do possível só podem ser definidos indo além do impossível."')
 salvarNota(0, 'Arthur C. Clarke', '"Os limites do possível só podem ser definidos indo além do impossível."')
 
 repopularTabela();

@@ -89,6 +89,7 @@ ul div.note-body{
 }
 ul div.note-body:hover svg {
     width: 30px;
+    height: 30px;
 }
 div.note-body li:first-child{
     font-weight: 300;
