@@ -67,6 +67,10 @@ function limparLista() {
 //  CREATE e UPDATE
 function salvarNota(id, titulo, conteudo) {
 
+    notas.forEach(nota => {
+        nota.recent = false;
+    })
+
     if (id == 0) {
 
         //CREATE
@@ -76,6 +80,7 @@ function salvarNota(id, titulo, conteudo) {
             id: id,
             titulo: titulo,
             conteudo: conteudo,
+            recent: true
         }
 
         notas.push(notaObj);
@@ -88,6 +93,7 @@ function salvarNota(id, titulo, conteudo) {
             if (nota.id == id) {
                 nota.titulo = titulo;
                 nota.conteudo = conteudo;
+                nota.recent = true;
             }
         })
     }
@@ -155,7 +161,7 @@ function criarNotaHTML(nota) {
     for (const key in nota) {
         if (Object.hasOwnProperty.call(nota, key)) {
             const propriedade = nota[key];
-            if (key != 'id') {
+            if (key != 'id' && key != 'recent') {
 
                 let nota_li = document.createElement('li');
                 let nota_p = document.createElement('p');
@@ -209,9 +215,15 @@ function criarNotaHTML(nota) {
                 nota_DIV.appendChild(nota_li);
                 nota_DIV.classList.add('note-body');
 
+
                 if (key == 'conteudo') {
                     nota_li.hidden = true;
                 }
+
+                if (nota.recent == true) {
+                    nota_DIV.classList.add('recently-edited');
+                }
+
             }
         }
     }
@@ -335,6 +347,10 @@ document.addEventListener("keydown", e => {
 salvarNota(0, 'Tecla ESC', 'A tecla "ESC" fechará o formulário de edição');
 salvarNota(0, 'Tecla ENTER+', 'A tecla "ENTER" além de abrir o formulário, irá pular entre os items, se houver um vazio, e confirmará o salvamento se todos estiverem preenchidos. Prático, não?');
 salvarNota(0, 'Precisa de agilidade?', 'Precisa criar rapidamente várias notas? Tente a interação somente pelo teclado e veja como é prático!');
+
+notas.forEach(nota => {
+    nota.recent = false;
+})
 
 repopularTabela();
 

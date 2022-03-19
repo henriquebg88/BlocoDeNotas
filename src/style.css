@@ -139,6 +139,10 @@ div.note-body li.nota-aberta {
     font-weight: 400;
 }
 
+ul div.note-body.recently-edited {
+    box-shadow: 0px 1px 10px #707ceac9 !important;
+}
+
             /*//////////////////*/
             /*      Botões      */
             /*//////////////////*/
